@@ -29,7 +29,7 @@ export default function Main(props) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      {showLinks()}
+      {/* {showLinks()} */}
       <Link to="/AddRoom">
         <button
           type="button"
