@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Components/Header";
 import Main from "./Components/Main";
-import Bathroom from "./Components/Bathroom";
 import Room from "./Components/Room";
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -12,13 +11,23 @@ function App() {
   const [rooms, setRooms] = useState([]);
 
   // Add a room to roomList.
-  const addRoom = (roomName, roomType, roomColor) => {
+  const addRoom = (roomName, roomType, roomColor, devicesList) => {
     // debugger;
-    setRooms([{ name: roomName, type: roomType, color: roomColor }, ...rooms]);
+    setRooms([
+      {
+        name: roomName,
+        type: roomType,
+        color: roomColor,
+        devices: devicesList,
+      },
+      ...rooms,
+    ]);
   };
+
   // Delete room from roomList.
-  const deleteRoom = () => {
-    return true;
+  const deleteRoom = (i) => {
+    let tempRoomsList = rooms.filter((element, index) => index !== i);
+    setRooms(tempRoomsList);
   };
 
   const routeList = () => {
@@ -30,7 +39,7 @@ function App() {
             return (
               <Route
                 exact
-                path={`/${element.type}`}
+                path={`/${element.name}`}
                 component={() => {
                   return (
                     <Room
@@ -38,6 +47,7 @@ function App() {
                       name={element.name}
                       type={element.type}
                       color={element.color}
+                      devicesList={element.devices}
                     />
                   );
                 }}
@@ -59,44 +69,28 @@ function App() {
       }}
     >
       <Header />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          minHeight: "500px",
-          margin: "100px 0px",
-        }}
-      >
-        <Provider value={{ add: addRoom, rooms: rooms }}>
-          <Router>
-            <Switch>{routeList()}</Switch>
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={() => {
-                  return <Main rooms={rooms} />;
-                }}
-              />
-              <Route
-                exact
-                path="/AddRoom"
-                component={() => {
-                  return <AddRoom />;
-                }}
-              />
-            </Switch>
-          </Router>
-        </Provider>
-        {/* 
 
-
-      Here is going to be all created rooms.
-
-
-      */}
-      </div>
+      <Provider value={{ add: addRoom, dell: deleteRoom, rooms: rooms }}>
+        <Router>
+          <Switch>{routeList()}</Switch>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={() => {
+                return <Main rooms={rooms} />;
+              }}
+            />
+            <Route
+              exact
+              path="/AddRoom"
+              component={() => {
+                return <AddRoom />;
+              }}
+            />
+          </Switch>
+        </Router>
+      </Provider>
     </div>
   );
 }
