@@ -2,7 +2,6 @@ import React from "react";
 import { Consumer } from "../ContextAPI";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Bathroom from "./Bathroom";
 
 export default function AddRoom() {
   const [name, setName] = useState("");
@@ -10,7 +9,7 @@ export default function AddRoom() {
   const [color, setColor] = useState("white");
 
   return (
-    <div>
+    <div style={{ minHeight: "745px" }}>
       <div
         className=""
         style={{
@@ -18,6 +17,7 @@ export default function AddRoom() {
           borderRadius: "10px",
           boxShadow: "2px 2px 10px",
           backgroundColor: "#9ba4b4",
+          margin: "auto 0px",
         }}
       >
         <label className="form-label" htmlFor="roomSelect">
@@ -78,6 +78,13 @@ export default function AddRoom() {
                 className="btn btn-success"
                 style={{ textTransform: "uppercase", margin: "10px 5px" }}
                 onClick={() => {
+                  debugger;
+                  if (val.rooms.indexOf(name) > -1) console.log("Yes!");
+                  if (type.length === 0 || type === "Choose room")
+                    alert("Please select room type!");
+                  else if (name.length === 0) alert("Please enter room name!");
+                  else if (name.length > 5)
+                    alert("Length of room name cant be more then 5 chars.");
                   val.add(name, type, color);
                 }}
               >

@@ -1,30 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import Room from "./Room";
-import AddRoom from "./AddRoom";
+
 export default function Main(props) {
   return (
     <div
       style={{
-        backgroundColor: "red",
-        border: "1px solid black",
+        minHeight: "745px",
         display: "flex",
         flexDirection: "column",
-        width: "100%",
-        height: "100%",
+        justifyContent: "center",
+        backgroundColor: "green",
       }}
     >
       <div
         style={{
-          border: "1px solid black",
+          minHeight: "250px",
           display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
           justifyContent: "center",
-          flexFlow: "wrap",
+          backgroundColor: "red",
         }}
       >
+        {/* Open link for each room in the rooms array. */}
         {props.rooms.map((element, i) => {
-          console.log(element.type);
           return (
             <Link to={`/${element.name}`}>
               <button
