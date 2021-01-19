@@ -6,7 +6,6 @@ import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AddRoom from "./Components/AddRoom";
 import { Provider } from "./ContextAPI";
-import { findAllByTestId } from "@testing-library/react";
 
 function App() {
   const [rooms, setRooms] = useState([]);
@@ -28,19 +27,19 @@ function App() {
 
   // Add device to the devices array.
   // In witch room device is, device name, device condition and id.
-  const addDevice = (room, device, condition, id) => {
+  const addDevice = (room, device, condition) => {
     setDevices([
-      { room: room, deviceName: device, condition: condition, id: id },
+      { room: room, deviceName: device, condition: condition },
       ...devices,
     ]);
   };
 
-  const setDeviceCondition = (id, device) => {
-    devices.map((element) => {
-      if (devices.id === id && devices.device === device) {
-        setDevices([{ condition: !devices.condition }]);
-      }
-    });
+  const setDeviceCondition = (id) => {
+    let newDevices = [...devices];
+    for (let i = 0; i < newDevices.length; i++) {
+      if (i === id) newDevices[i].condition = !newDevices[i].condition;
+    }
+    setDevices(newDevices);
   };
 
   // Delete room from rooms.

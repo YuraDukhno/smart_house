@@ -3,31 +3,26 @@ import { useState } from "react";
 import { Consumer } from "../ContextAPI";
 
 export default function Devise(props) {
-  const [condition, setCondition] = useState(false);
-
+  // Check condition of device and return tru or false depending on devices array in app.
   const hidden = (condition) => {
-    return condition === false ? "Off" : "On";
+    // debugger;
+    if (props.index >= 0) return condition === false ? "Off" : "On";
+    else return null;
   };
 
   return (
     <div>
-      <button
-        className={"btn btn-info"}
-        onClick={() => {
-          setCondition(!condition);
-        }}
-      >
-        {props.name}
-      </button>
+      <button className={"btn btn-info"}>{props.name}</button>
       <Consumer>
         {(val) => {
+          // debugger;
           return (
             <button
               onClick={() => {
-                val.setCondition(props.index, props.name);
+                val.setCondition(props.index);
               }}
             >
-              {hidden(val.condition)}
+              {hidden(val.devices[props.index].condition)}
             </button>
           );
         }}

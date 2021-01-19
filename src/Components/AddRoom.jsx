@@ -78,7 +78,7 @@ export default function AddRoom() {
                 className="btn btn-success"
                 style={{ textTransform: "uppercase", margin: "10px 5px" }}
                 onClick={() => {
-                  debugger;
+                  // debugger;
                   if (val.rooms.indexOf(name) > -1) console.log("Yes!");
                   if (type.length === 0 || type === "Choose room")
                     alert("Please select room type!");
