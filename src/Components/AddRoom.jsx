@@ -79,13 +79,15 @@ export default function AddRoom() {
                 style={{ textTransform: "uppercase", margin: "10px 5px" }}
                 onClick={() => {
                   // debugger;
-                  if (val.rooms.indexOf(name) > -1) console.log("Yes!");
+                  // if (val.rooms.indexOf(name) > -1)
                   if (type.length === 0 || type === "Choose room")
                     alert("Please select room type!");
                   else if (name.length === 0) alert("Please enter room name!");
                   else if (name.length > 5)
                     alert("Length of room name cant be more then 5 chars.");
-                  val.add(name, type, color);
+                  else {
+                    val.add(name, type, color);
+                  }
                 }}
               >
                 Add Room

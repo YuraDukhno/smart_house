@@ -13,16 +13,31 @@ function App() {
 
   // Add a object room to rooms.
   // Name of room, Type of room and room color.
+
+  // const ifSameRoomName = (name) => {
+  //   debugger;
+  //   return
+  // };
+
   const addRoom = (roomName, roomType, roomColor) => {
     // debugger;
-    setRooms([
-      {
-        name: roomName,
-        type: roomType,
-        color: roomColor,
-      },
-      ...rooms,
-    ]);
+    // let flag = ifSameRoomName(roomName);
+    if (
+      rooms.some((element) => {
+        return element.name === roomName;
+      })
+    )
+      alert("Try another name!");
+    else {
+      setRooms([
+        {
+          name: roomName,
+          type: roomType,
+          color: roomColor,
+        },
+        ...rooms,
+      ]);
+    }
   };
 
   // Add device to the devices array.
@@ -98,6 +113,7 @@ function App() {
         padding: "10px",
       }}
     >
+      {/* Header Component */}
       <Header />
 
       <Provider
