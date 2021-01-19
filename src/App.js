@@ -34,6 +34,13 @@ function App() {
     ]);
   };
 
+  // Delete device from devices.
+  const deleteDevice = (id) => {
+    // debugger;
+    let tempDevicesList = devices.filter((element, index) => index !== id);
+    setDevices(tempDevicesList);
+  };
+
   const setDeviceCondition = (id) => {
     let newDevices = [...devices];
     for (let i = 0; i < newDevices.length; i++) {
@@ -100,6 +107,7 @@ function App() {
           setCondition: setDeviceCondition,
           rooms: rooms,
           devices: devices,
+          delDevice: deleteDevice,
         }}
       >
         <Router>

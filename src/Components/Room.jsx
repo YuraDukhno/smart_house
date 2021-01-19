@@ -5,7 +5,6 @@ import { useState } from "react";
 import Devise from "./Devise";
 
 export default function Room(props) {
-  // const [deviseList, setDeviseList] = useState([]);
   const [selectedDevise, setSelectedDevise] = useState("");
 
   return (
@@ -67,24 +66,6 @@ export default function Room(props) {
         >
           add devise
         </button>
-
-        {/* <button
-        type="button"
-        className="btn btn-success"
-        style={{ textTransform: "uppercase", margin: "10px 5px" }}
-        onClick={() => {
-          if (selectedDevise.length === 0) {
-            alert("Please choose devise.");
-          } else {
-            setDeviseList([
-              { deviseName: selectedDevise, condition: false },
-              ...deviseList,
-            ]);
-          }
-        }}
-      >
-        add devise
-      </button> */}
         <Link to="/">
           <Consumer>
             {(val) => {
